@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { View, TextInput, StyleSheet, Text } from "react-native";
+import React, { useRef, useState } from 'react';
+import { View, TextInput, StyleSheet, Text } from 'react-native';
 
 interface OTPInputProps {
   length?: number;
@@ -7,7 +7,7 @@ interface OTPInputProps {
 }
 
 const OTPInput: React.FC<OTPInputProps> = ({ length = 6, onOtpComplete }) => {
-  const [otp, setOtp] = useState<string[]>(new Array(length).fill(""));
+  const [otp, setOtp] = useState<string[]>(new Array(length).fill(''));
   const inputsRef = useRef<TextInput[]>([]);
 
   const handleChange = (text: string, index: number) => {
@@ -23,13 +23,13 @@ const OTPInput: React.FC<OTPInputProps> = ({ length = 6, onOtpComplete }) => {
     }
 
     // Call the OTP complete function when all fields are filled
-    if (newOtp.join("").length === length) {
-      onOtpComplete(newOtp.join(""));
+    if (newOtp.join('').length === length) {
+      onOtpComplete(newOtp.join(''));
     }
   };
 
   const handleKeyPress = (e: any, index: number) => {
-    if (e.nativeEvent.key === "Backspace" && !otp[index] && index > 0) {
+    if (e.nativeEvent.key === 'Backspace' && !otp[index] && index > 0) {
       // Move focus to the previous field when backspace is pressed
       inputsRef.current[index - 1]?.focus();
     }
@@ -40,13 +40,13 @@ const OTPInput: React.FC<OTPInputProps> = ({ length = 6, onOtpComplete }) => {
       {otp.map((_, index) => (
         <TextInput
           key={index}
-          ref={(el) => (inputsRef.current[index] = el!)}
+          ref={el => (inputsRef.current[index] = el!)}
           style={styles.input}
-          keyboardType="numeric"
+          keyboardType='numeric'
           maxLength={1}
           value={otp[index]}
-          onChangeText={(text) => handleChange(text, index)}
-        //   onKeyPress={(e) => handleKeyPress(e, index)}
+          onChangeText={text => handleChange(text, index)}
+          //   onKeyPress={(e) => handleKeyPress(e, index)}
         />
       ))}
     </View>
@@ -55,16 +55,16 @@ const OTPInput: React.FC<OTPInputProps> = ({ length = 6, onOtpComplete }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   input: {
     width: 50,
     height: 50,
     borderWidth: 1,
-    borderColor: "#333",
-    textAlign: "center",
+    borderColor: '#333',
+    textAlign: 'center',
     fontSize: 18,
     margin: 5,
     borderRadius: 5,

@@ -1,0 +1,17 @@
+echo 'Performing code styling, testing, and building processes before committing'
+
+# Check ESLint Standards
+# npm run lint ||
+# (
+#         echo 'ESLint Check Failed. Run npm run lint:fix, Review the listed issues, make the required adjustments, add the changes, and attempt to commit again.'
+#         false; 
+# )
+
+prettier . --check ||
+(
+    echo 'Run `npx prettier . --write` to fix.'
+    false;
+)
+
+# If everything passes... Now we can commit
+echo 'The code appears to meet the required standards. Proceeding with the commit process...'

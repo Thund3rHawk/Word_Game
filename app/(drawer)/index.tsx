@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
-import React, { useEffect, useState } from "react";
-import { alphabets, Word } from "@/constants";
-import OTPInput from "@/components/otpInput";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { alphabets, Word } from '@/constants';
+import OTPInput from '@/components/otpInput';
 
 export default function index() {
   const [words, setWords] = useState<string[]>([]);
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [singleWord, setSingleWord] = useState<string>();
   const [point, setPoint] = useState(0);
 
@@ -14,7 +14,7 @@ export default function index() {
   function getRandomLetters(
     length: number,
     word: string,
-    wordlength: number
+    wordlength: number,
   ): string[] {
     let result: string[] = [];
     let random: string[] = [];
@@ -41,25 +41,24 @@ export default function index() {
         Array.from(wordSet)[Math.floor(Math.random() * wordSet.size)];
       setSingleWord(random[0]);
       setWords(getRandomLetters(8 - random.length + 1, random, random.length));
-      setText("");
+      setText('');
     }
-    
+
     generateKeyBoard();
     const timer = setTimeout(() => {
       Alert.alert("Time's up!", `Your score is ${point}`);
       setPoint(0);
-      setText("")
+      setText('');
       generateKeyBoard();
     }, 10000);
 
     return () => clearTimeout(timer);
   }, [point]);
 
-
   useEffect(() => {
     if (wordSet.has(singleWord + text)) {
       setPoint(point + 1);
-      setText("");
+      setText('');
     }
   }, [text]);
 
@@ -94,28 +93,28 @@ export default function index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   keys: {
-    width: "23%", // Slightly less than 25% to allow for margins
+    width: '23%', // Slightly less than 25% to allow for margins
     aspectRatio: 1, // Keeps the item square (optional)
-    backgroundColor: "#f1f1f1",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#f1f1f1',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: 'gray',
     borderRadius: 30,
   },
   buttonClass: {
     paddingHorizontal: 50,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     padding: 10,
-    position: "absolute",
+    position: 'absolute',
     bottom: 30,
   },
   buttonText: {
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   pointView: {
-    position: "absolute",
+    position: 'absolute',
     top: 10,
     right: 10,
   },
